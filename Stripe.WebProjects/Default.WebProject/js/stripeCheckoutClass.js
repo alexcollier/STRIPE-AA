@@ -17,8 +17,6 @@ This node file then calls a node_module called stripe.js. This version is an old
 
 */
 
-
-
 A5.loadJavascriptFile('https://checkout.stripe.com/checkout.js');
 // JS class for Stripe Checkout
 // revised: 11-07-2016 to support locale

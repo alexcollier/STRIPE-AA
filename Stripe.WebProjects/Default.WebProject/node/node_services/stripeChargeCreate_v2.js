@@ -1,9 +1,11 @@
 /**
- * stripeChargesCreate.js
+ * stripeChargesCreate_v2.js
  * source directory:  node-services
  * 
- * By R.E. Moore Jr.
- * Last revised: 02-17-2105
+ * Orginally By R.E. Moore Jr.
+ * Last revised: 02-17-2105 by R.E. Moore Jr.
+ * v2 created in order for deconstructing / expansion of stripe full node SDK by Alex Collier on 04/03/2018
+ * 
  *
  * Process charge using Stripe Checkout
  * @param {Object} packet
@@ -17,8 +19,9 @@
 */
 
 exports.handler = function(packet,response,sendResponse) {
+	debugger;
 	var e;
-	var stripeLib = require('stripe');
+	var stripeLib = require('stripe');  //note Alex Collier as updated this version of Stripe the lastest version and confirm old stuff still works
 	
 	try {
 	    var stripe = stripeLib(	

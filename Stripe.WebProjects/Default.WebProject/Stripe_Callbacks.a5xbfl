@@ -3,7 +3,7 @@
 'To password protect the file (which will also encrypt it), set the comment on the first line to: 'PASSWORD:your_password_phrase
 
 function stripeCheckout_f89e86576e9748d0a57a3a1a56e57403 as c(e as p)
-debug(1)
+'debug(1)
 DIM p as P
 DIM p.appType as C = "Test"
 DIM p.testSecretKey as C = "{YOUR_SECRET}"

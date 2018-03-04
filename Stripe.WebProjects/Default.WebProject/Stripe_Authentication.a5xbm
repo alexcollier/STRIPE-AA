@@ -1,0 +1,20 @@
+'TIP: You can encrypt this file when it is saved, or password protect it, by adding a special comment to the first line of the file (with no leading spaces).
+'To encrypt the file, set the comment on the first line to: 'ENCRYPTED
+'To password protect the file (which will also encrypt it), set the comment on the first line to: 'PASSWORD:your_password_phrase
+
+'This file is for your Stripe Settings - Do not git committ this file. 
+ 
+Function Set_Stripe_Details as P ()
+	
+	debug(1)
+	
+	DIM Settings as p
+	DIM Settings.appType as C = "Test"
+	DIM Settings.testSecretKey as C = "{YourSecretKey}"
+	DIM Settings.liveSecretKey as C = "" ' Ok to leave Blank
+
+	Set_Stripe_Details = Settings
+	
+end Function
+
+exports.Set_Stripe_Details = Set_Stripe_Details

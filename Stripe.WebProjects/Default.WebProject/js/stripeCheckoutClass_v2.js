@@ -20,10 +20,14 @@ This node file then calls a node_module called stripe.js. This version is an old
 
 
 A5.loadJavascriptFile('https://checkout.stripe.com/checkout.js');
+
+//New Stripe Client Side API - > https://stripe.com/docs/stripe-js/reference
+A5.loadJavascriptFile('https://js.stripe.com/v3/');
+
 // JS class for Stripe Checkout
 // revised: 11-07-2016 to support locale
 // revised: 03-20-2017 to init properly with specified currency
-function StripeCheckoutClass(obj) {
+function stripeCheckoutClass_v2(obj) {
 	debugger;
 	this.id = obj.id;
 	this.initialized = false;
@@ -118,7 +122,7 @@ function StripeCheckoutClass(obj) {
 	}
 }
 
-StripeCheckoutClass.prototype.callStripeCheckout = function() {
+stripeCheckoutClass_v2.prototype.callStripeCheckout = function() {
 	debugger;
 	if (!this.initialized) {
 		this.initStripe();

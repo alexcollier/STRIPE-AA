@@ -2,37 +2,45 @@
 'To encrypt the file, set the comment on the first line to: 'ENCRYPTED
 'To password protect the file (which will also encrypt it), set the comment on the first line to: 'PASSWORD:your_password_phrase
 
-function stripeCheckout_f89e86576e9748d0a57a3a1a56e57403 as c(e as p)
-debug(1)
-DIM p as P
-DIM p.appType as C = "Test"
-DIM p.testSecretKey as C = "{YOUR_KEY"
-DIM p.liveSecretKey as C
+function stripeCheckout_xb_v2 as c (e as p)
+	
+	debug(1)
 
-
-dim n as Helper::V8
-dim p2 as p
-p2._id = api_uuidcreate()
-p2._command = "stripeChargesCreate"
-p2._tokenId = e.token
-
-dim skey as c
-if p.appType = "Test" then
-skey = p.testSecretKey
-else
-skey = p.liveSecretKey
-end if
-p2._key = skey
-p2._amount = e._state.charge.amount
-p2._description = e._state.charge.description
-p2._currency = e._state.charge.currency
-
-dim jsonCmd as c
-jsonCmd = json_generate(p2)
-
-dim result as c
-result = n.NodeRequest(jsonCmd)
-stripeCheckout_f89e86576e9748d0a57a3a1a56e57403 = "{dialog.object}._stripeResults ="+result+";A5.stripe.results="+result+";"
+	DIM authentication as p = require("Stripe_Authentication")
+	
+	DIM p as P
+	p = authentication.Set_Stripe_Details()
+	
+	dim n as Helper::V8
+	dim p2 as p
+	p2._id = api_uuidcreate()
+	p2._command = "stripeChargesCreate"
+	p2._tokenId = e.token
+	
+	dim skey as c
+	if p.appType = "Test" then
+	skey = p.testSecretKey
+	else
+	skey = p.liveSecretKey
+	end if
+	p2._key = skey
+	p2._amount = e._state.charge.amount
+	p2._description = e._state.charge.description
+	p2._currency = e._state.charge.currency
+	
+	dim jsonCmd as c
+	jsonCmd = json_generate(p2)
+	
+	dim result as c
+	
+	result = node_request("stripeChargeCreate_v2",p2,.T.,.T.,.T.)
+	
+	'<- Orginal code -> 
+	'result = n.NodeRequest(jsonCmd)
+	'<-end of Orginal code->
+	
+	
+	stripeCheckout_xb_v2 = "{dialog.object}._stripeResults ="+result+";A5.stripe.results="+result+";"
 
 end function
 
